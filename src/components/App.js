@@ -32,6 +32,7 @@ function App() {
 
   function selectShow(show) {
     Adapter.getShowEpisodes(show.id).then((episodes) => {
+      // console.log(episodes)
       setSelectedShow(show);
       setEpisodes(episodes);
     });
@@ -40,9 +41,11 @@ function App() {
   let displayShows = shows;
   if (filterByRating) {
     displayShows = displayShows.filter((s) => {
-      s.rating.average >= filterByRating;
+      return s.rating.average >= parseInt(filterByRating);
     });
   }
+
+  console.log(displayShows)
 
   return (
     <div>
